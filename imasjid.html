@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Jadwal Sholat</title>
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url("img/masjid.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;
+}
+.header {
+	height: 100px;
+	background-color: rgba(0, 0, 0, 0.2);
+	text-align: center;
+}
+
+.kiri {
+	float: left;
+	width: 25%;
+}
+
+.tengah {
+	display: inline-block;
+	width: 50%;
+}
+
+.kanan {
+	float: right;
+	width: 25%;
+}
+
+p.tanggal {
+	margin: 12px;
+	font-size: 22px;
+	color: white;
+}
+
+hr.m20 {
+	margin-left: 20px;
+}
+
+p.nama {
+	margin-top: 6px;
+	margin-bottom: -8px;
+	color: lime;
+	font-size: 48px;
+	font-weight: bold;
+}
+
+p.alamat {
+	font-size: 18px;
+	color: cyan;
+}
+
+p.jam {
+	margin: 2px;
+	font-size: 80px;
+	color: yellow;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+.jadwal {
+	text-align: center;
+}
+
+.jadwal-imsak {
+	display: inline-block;
+	margin: 1%;
+	height: 80px;
+	width: 13%;
+	border-radius: 2px;
+	background-color: rgba(0, 180, 0, 0.4);
+}
+
+.jadwal-sholat {
+	display: inline-block;
+	margin: 1%;
+	height: 80px;
+	width: 13%;
+	border-radius: 2px;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+p.info {
+	font-size: 26px;
+	color: yellow;
+	margin: 6px;
+}
+
+p.info-jam {
+	font-size: 28px;
+	color: white;
+	font-weight: bold;
+	margin: 6px;
+}
+
+.pengumuman {
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.marquee {
+	height: 40px;
+	overflow: hidden;
+	position: relative;
+}
+
+.marquee p {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	font-size: 22px;
+	text-align: center;
+	color: white;
+	margin: 6px;
+	line-height: 30px;
+
+	transform:translateX(100%);
+	-moz-transform:translateX(100%);
+	-webkit-transform:translateX(100%);
+}
+.marquee p:nth-child(1) {
+	animation: left-one 20s ease infinite;
+	-moz-animation: left-one 20s ease infinite;
+	-webkit-animation: left-one 20s ease infinite;
+}
+.marquee p:nth-child(2) {
+	animation: left-two 20s ease infinite;
+	-moz-animation: left-two 20s ease infinite;
+	-webkit-animation: left-two 20s ease infinite;
+}
+.marquee.down p {
+	transform:translateY(-100%);
+	-moz-transform:translateY(-100%);
+	-webkit-transform:translateY(-100%);
+}
+.marquee.down p:nth-child(1) {
+	animation: down-one 20s ease infinite;
+	-moz-animation: down-one 20s ease infinite;
+	-webkit-animation: down-one 20s ease infinite;
+}
+.marquee.down p:nth-child(2) {
+	animation: down-two 20s ease infinite;
+	-moz-animation: down-two 20s ease infinite;
+	-webkit-animation: down-two 20s ease infinite;
+}
+.marquee.up p {	
+	transform:translateY(100%);
+	-moz-transform:translateY(100%);
+	-webkit-transform:translateY(100%);
+}
+.marquee.up p:nth-child(1) {
+	animation: up-one 20s ease infinite;
+	-moz-animation: up-one 20s ease infinite;
+	-webkit-animation: up-one 20s ease infinite;
+}
+.marquee.up p:nth-child(2) {
+	animation: up-two 20s ease infinite;
+	-moz-animation: up-two 20s ease infinite;
+	-webkit-animation: up-two 20s ease infinite;
+}
+
+/*================================
+	Move the Marquee to the Left
+==================================*/
+
+/** Mozilla Firefox Keyframes **/
+@-moz-keyframes left-one {
+	0%	{
+		-moz-transform:translateX(100%);
+	}
+	10% {
+		-moz-transform:translateX(0);
+	}
+	40% {
+		-moz-transform:translateX(0);
+	}
+	50% {
+		-moz-transform:translateX(-100%);
+	}
+	100%{
+		-moz-transform:translateX(-100%);
+	}
+}
+@-moz-keyframes left-two {
+	0% {
+		-moz-transform:translateX(100%);
+	}
+	50% {
+		-moz-transform:translateX(100%);
+	}
+	60% {
+		-moz-transform:translateX(0);		
+	}
+	90% {
+		-moz-transform:translateX(0);		
+	}
+	100%{
+		-moz-transform:translateX(-100%);
+	}
+}
+/** Webkit Keyframes **/
+@-webkit-keyframes left-one {
+	0% {
+		-webkit-transform:translateX(100%);
+	}
+	10% {
+		-webkit-transform:translateX(0);
+	}
+	40% {
+		-webkit-transform:translateX(0);
+	}
+	50% {
+		-webkit-transform:translateX(-100%);
+	}
+	100%{
+		-webkit-transform:translateX(-100%);
+	}
+}
+@-webkit-keyframes left-two {
+	0% {
+		-webkit-transform:translateX(100%);
+	}
+	50% {
+		-webkit-transform:translateX(100%);
+	}
+	60% {
+		-webkit-transform:translateX(0);		
+	}
+	90% {
+		-webkit-transform:translateX(0);		
+	}
+	100%{
+		-webkit-transform:translateX(-100%);
+	}
+}
+
+/*================================
+	Move the Marquee Downwards
+==================================*/
+
+/** Mozilla Firefox Keyframes **/
+@-moz-keyframes down-one {
+	0%	{
+		-moz-transform:translateY(-100%);
+	}
+	10% {
+		-moz-transform:translateY(0);
+	}
+	40% {
+		-moz-transform:translateY(0);
+	}
+	50% {
+		-moz-transform:translateY(100%);
+	}
+	100%{
+		-moz-transform:translateY(100%);
+	}
+}
+@-moz-keyframes down-two {
+	0% {
+		-moz-transform:translateY(-100%);
+	}
+	50% {
+		-moz-transform:translateY(-100%);
+	}
+	60% {
+		-moz-transform:translateY(0);		
+	}
+	90% {
+		-moz-transform:translateY(0);		
+	}
+	100%{
+		-moz-transform:translateY(100%);
+	}
+}
+
+/** Webkit Keyframes **/
+@-webkit-keyframes down-one {
+	0% {
+		-webkit-transform:translateY(-100%);
+	}
+	10% {
+		-webkit-transform:translateY(0);
+	}
+	40% {
+		-webkit-transform:translateY(0);
+	}
+	50% {
+		-webkit-transform:translateY(100%);
+	}
+	100%{
+		-webkit-transform:translateY(100%);
+	}
+}
+@-webkit-keyframes down-two {
+	0% {
+		-webkit-transform:translateY(-100%);
+	}
+	50% {
+		-webkit-transform:translateY(-100%);
+	}
+	60% {
+		-webkit-transform:translateY(0);		
+	}
+	90% {
+		-webkit-transform:translateY(0);		
+	}
+	100%{
+		-webkit-transform:translateY(100%);
+	}
+}
+
+/*================================
+	Move the Marquee Upwards
+==================================*/
+
+/** Mozilla Firefox Keyframes **/
+@-moz-keyframes up-one {
+	0%	{
+		-moz-transform:translateY(100%);
+	}
+	10% {
+		-moz-transform:translateY(0);
+	}
+	40% {
+		-moz-transform:translateY(0);
+	}
+	50% {
+		-moz-transform:translateY(-100%);
+	}
+	100%{
+		-moz-transform:translateY(-100%);
+	}
+}
+@-moz-keyframes up-two {
+	0% {
+		-moz-transform:translateY(100%);
+	}
+	50% {
+		-moz-transform:translateY(100%);
+	}
+	60% {
+		-moz-transform:translateY(0);		
+	}
+	90% {
+		-moz-transform:translateY(0);		
+	}
+	100%{
+		-moz-transform:translateY(-100%);
+	}
+}
+
+/** Webkit Keyframes **/
+@-webkit-keyframes up-one {
+	0% {
+		-webkit-transform:translateY(100%);
+	}
+	10% {
+		-webkit-transform:translateY(0);
+	}
+	40% {
+		-webkit-transform:translateY(0);
+	}
+	50% {
+		-webkit-transform:translateY(-100%);
+	}
+	100%{
+		-webkit-transform:translateY(-100%);
+	}
+}
+@-webkit-keyframes up-two {
+	0% {
+		-webkit-transform:translateY(100%);
+	}
+	50% {
+		-webkit-transform:translateY(100%);
+	}
+	60% {
+		-webkit-transform:translateY(0);		
+	}
+	90% {
+		-webkit-transform:translateY(0);		
+	}
+	100%{
+		-webkit-transform:translateY(-100%);
+	}
+}
+
+</style>
+</head>
+<body>
+	<div class="header">
+		<div class="kiri">
+			<p class="tanggal" id="tanggal">-, -/-/-</p>
+			<hr class="m20">
+			<p class="tanggal" id="tanggal-hijri">-, -/-/-</p>
+		</div>
+		<div class="tengah">
+			<p class="nama">Masjid Al-Iman</p>
+			<p class="alamat">Ct 14, Klebengan, Sleman, Yogyakarta</p>
+		</div>
+		<div class="kanan">
+			<p class="jam" id="digital"> - : - : - </p>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="jadwal">
+			<div class="jadwal-imsak">
+				<p class="info">Imsak</p>
+				<p class="info-jam" id="imsak">--:--</p>
+			</div>
+			<div class="jadwal-sholat">
+				<p class="info">Subuh</p>
+				<p class="info-jam" id="subuh">--:--</p>
+			</div>
+			<div class="jadwal-sholat">
+				<p class="info">Dzuhur</p>
+				<p class="info-jam" id="dzuhur">--:--</p>
+			</div>
+			<div class="jadwal-sholat">
+				<p class="info">Ashar</p>
+				<p class="info-jam" id="ashar">--:--</p>
+			</div>
+			<div class="jadwal-sholat">
+				<p class="info">Maghrib</p>
+				<p class="info-jam" id="maghrib">--:--</p>
+			</div>
+			<div class="jadwal-sholat">
+				<p class="info">Isya</p>
+				<p class="info-jam" id="isya">--:--</p>
+			</div>
+		</div>
+		<div class="pengumuman">
+			<div class="marquee up">
+				<p>Informasi infaq bulan November 2021, sebesar Rp 1.855.000,- Semoga senantiasa dilancarkan dalam segala urusan sehari-hari. aamiin</p>
+				<p>Tetap jaga kebersihan, kesehatan, dan terapkan pola hidup sehat. semoga kita senantiasa dalam lindungan Nya. aamiin</p>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+	//http://www.al-habib.info/islamic-calendar/hijricalendartext.htm
+	function gmod(n,m){
+		return ((n%m)+m)%m;
+	}
+
+	function kuwaiticalendar(adjust){
+		var today = new Date();
+		if(adjust) {
+			adjustmili = 1000*60*60*24*adjust; 
+			todaymili = today.getTime()+adjustmili;
+			today = new Date(todaymili);
+		}
+		day = today.getDate();
+		month = today.getMonth();
+		year = today.getFullYear();
+		m = month+1;
+		y = year;
+		if(m<3) {
+			y -= 1;
+			m += 12;
+		}
+
+		a = Math.floor(y/100.);
+		b = 2-a+Math.floor(a/4.);
+		if(y<1583) b = 0;
+		if(y==1582) {
+			if(m>10)  b = -10;
+			if(m==10) {
+				b = 0;
+				if(day>4) b = -10;
+			}
+		}
+
+		jd = Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+day+b-1524;
+
+		b = 0;
+		if(jd>2299160){
+			a = Math.floor((jd-1867216.25)/36524.25);
+			b = 1+a-Math.floor(a/4.);
+		}
+		bb = jd+b+1524;
+		cc = Math.floor((bb-122.1)/365.25);
+		dd = Math.floor(365.25*cc);
+		ee = Math.floor((bb-dd)/30.6001);
+		day =(bb-dd)-Math.floor(30.6001*ee);
+		month = ee-1;
+		if(ee>13) {
+			cc += 1;
+			month = ee-13;
+		}
+		year = cc-4716;
+
+		if(adjust) {
+			wd = gmod(jd+1-adjust,7)+1;
+		} else {
+			wd = gmod(jd+1,7)+1;
+		}
+
+		iyear = 10631./30.;
+		epochastro = 1948084;
+		epochcivil = 1948085;
+
+		shift1 = 8.01/60.;
+		
+		z = jd-epochastro;
+		cyc = Math.floor(z/10631.);
+		z = z-10631*cyc;
+		j = Math.floor((z-shift1)/iyear);
+		iy = 30*cyc+j;
+		z = z-Math.floor(j*iyear+shift1);
+		im = Math.floor((z+28.5001)/29.5);
+		if(im==13) im = 12;
+		id = z-Math.floor(29.5001*im-29);
+
+		var myRes = new Array(8);
+
+		myRes[0] = day; //calculated day (CE)
+		myRes[1] = month-1; //calculated month (CE)
+		myRes[2] = year; //calculated year (CE)
+		myRes[3] = jd-1; //julian day number
+		myRes[4] = wd-1; //weekday number
+		myRes[5] = id; //islamic date
+		myRes[6] = im-1; //islamic month
+		myRes[7] = iy; //islamic year
+
+		return myRes;
+	}
+
+	function writeIslamicDate(adjustment) {
+		var wdNames = new Array("Ahad","Ithnin","Thulatha","Arbaa","Khams","Jumuah","Sabt");
+		var iMonthNames = new Array("Muharram","Safar","Rabi'ul Awwal","Rabi'ul Akhir","Jumadal Ula","Jumadal Akhira","Rajab","Sha'ban","Ramadan","Shawwal","Dhul Qa'ada","Dhul Hijja");
+		var iDate = kuwaiticalendar(adjustment);
+		var outputIslamicDate = wdNames[iDate[4]] + ", " + iDate[5] + " " + iMonthNames[iDate[6]] + " " + iDate[7] + " AH";
+		return outputIslamicDate;
+	}
+
+	var cur_date;
+	function updateJam() {
+		var date = new Date();
+		var jam = date.getHours();
+		if (jam < 10) {
+			jam = "0" + jam;
+		}
+		var menit = date.getMinutes();
+		if (menit < 10) {
+			menit = "0" + menit;
+		}
+		var detik = date.getSeconds();
+		if (detik < 10) {
+			detik = "0" + detik;
+		}
+		document.getElementById("digital").innerHTML = jam + ":" + menit + ":" + detik;
+		if (cur_date != date.getDate()) {
+			var tahun = date.getFullYear();
+			var bulan = date.getMonth();
+			var tanggal = date.getDate();
+			var hari = date.getDay();
+			var list_hari = ["Minggu","Senin","Selasa","Rabu","Kamis","Jum'at","Sabtu"];
+			var list_bulan = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+			document.getElementById("tanggal").innerHTML = list_hari[hari] + ", " + tanggal + " " + list_bulan[bulan] + " " + tahun;
+			document.getElementById("tanggal-hijri").innerHTML = writeIslamicDate();
+			cur_date = tanggal;
+			console.log("update!");
+		}
+	}
+
+	setInterval(updateJam, 1000);
+
+	function callApi(url, callback) {
+		var xhr = new XMLHttpRequest();
+		xhr.onload = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				callback(true, xhr.responseText);
+			} else {
+				callback(false, xhr.responseText);
+			}
+		};
+		xhr.open("GET", url, true);
+		xhr.send();
+	}
+
+	callApi("https://api.myquran.com/v1/sholat/jadwal/1504/2021/11/22", function(status, response) {
+		if (status) {
+			var api = JSON.parse(response);
+			document.getElementById("imsak").innerHTML = api.data.jadwal.imsak;
+			document.getElementById("subuh").innerHTML = api.data.jadwal.subuh;
+			document.getElementById("dzuhur").innerHTML = api.data.jadwal.dzuhur;
+			document.getElementById("ashar").innerHTML = api.data.jadwal.ashar;
+			document.getElementById("maghrib").innerHTML = api.data.jadwal.maghrib;
+			document.getElementById("isya").innerHTML = api.data.jadwal.isya;
+		} else {
+			console.log("Error : " + response);
+		}
+	});
+</script>
+</body>
+</html>
